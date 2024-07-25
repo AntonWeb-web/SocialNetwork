@@ -1,0 +1,45 @@
+.profile {
+    display: grid;
+    grid-template-columns: 0.6fr 1fr;
+    overflow: auto;
+}
+
+.avatar {
+    width: 80%;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px;
+}
+
+.info {
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+h1 {
+    margin: 0 0 10px;
+}
+
+.city, .age, .description {
+    margin: 5px 0;
+    color: #555;
+}
+
+.containButton {
+    display: flex;
+    justify-content: end;
+}
+
+.custom_button {
+    margin: 20px;
+}
+
+/* Стили постов */
+
+.postImage {
+    width: 10%;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px;
+}
+
