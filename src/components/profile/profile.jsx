@@ -1,43 +1,37 @@
 import React, { useState } from 'react'
 import StyleCss from './profile.module.css'
 import { useSelector, useDispatch } from 'react-redux'
-import addPostAction from '../../redux/store/actions'
+import { addPostProfileAction } from '../../redux/store/addPostProfileAction'
 
 
 
 const Profile = () => {
     const ava = 'https://steamuserimages-a.akamaihd.net/ugc/832451549106448214/0C15FCBE28082B0A2043D1DEDE0E3C8228F1C1EE/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'
     const newPostElement = React.createRef()
+    const dispatch = useDispatch();
+    const statePosts = useSelector(state => state.rootReducer.posts.posts)
 
-    const posts = [
-        { id: 1, image: ava, text: 'Привет всем!!!!!!' },
-        { id: 2, image: ava, text: 'Мой второй пост, ура' },
-    ]
-
-    const [addPost, newAddPost] = useState(posts)
-
-    const asd = useSelector(state => state.posts) 
-    const dispatch = useDispatch()
-
-    const ViewPosts = (props) => {
-        return (
-            props.posts.map((post) => (
-                <div key={post.id}>
-                    <img className={StyleCss.postImage} src={post.image} alt="" />
-                    {post.text}
-                </div>
-            ))
-        )
-    }
-
-    const addNewPost = () => {
+    const addPostProfile = () => {
         const newPost = {
-            id: addPost.length + 1,
+            id: Date.now(),
             image: ava,
             text: newPostElement.current.value
         }
 
-        newAddPost((prevPost) => [...prevPost, newPost])
+        dispatch(addPostProfileAction(newPost))
+    }
+
+    const ViewPosts = (props) => {
+        return (
+            <div>
+                {props.posts.map((post) =>
+                        <div key={post.id}>
+                            <img className={StyleCss.postImage} src={post.image} alt="" />
+                            {post.text}
+                        </div>
+                    )}
+            </div>
+        )
     }
 
     const onPostChange = () => {
@@ -59,14 +53,15 @@ const Profile = () => {
                 </div>
             </div>
             <div>
-                <textarea 
+                <textarea
                     ref={newPostElement}
-                    className='add-post' 
-                    defaultValue='Добавить пост' 
+                    className='add-post'
+                    defaultValue='Добавить пост'
                     onChange={onPostChange}></textarea>
                 <div className={StyleCss.containButton}>
                     <button className={StyleCss.custom_button}
-                        onClick={addNewPost}> Добавить пост </button>
+                        //onClick={addNewPost}> Добавить пост </button>
+                        onClick={addPostProfile}> Добавить пост </button>
                 </div>
                 <div>
                     <button>
@@ -75,10 +70,18 @@ const Profile = () => {
                 </div>
             </div>
             <div>
-                <ViewPosts posts={addPost} />
+                <ViewPosts posts={statePosts}/>
             </div>
         </div>
     )
 }
 
 export default Profile
+
+
+// {posts.map((post) =>
+//     <div key={post.id}>
+//         <img className={StyleCss.postImage} src={post.image} alt="" />
+//         {post.text}
+//     </div>
+// )}
