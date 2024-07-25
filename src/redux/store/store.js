@@ -1,5 +1,5 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import reducerPost from '../reducer';
+import reducerPost from './reducer';
 import { cashReducer } from './cashReducer';
 import { customerReducer } from './customerReducer';
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import StyleCss from './profile.module.css'
 import { useSelector, useDispatch } from 'react-redux'
-import addPostAction from '../../redux/actions'
+import addPostAction from '../../redux/store/actions'
 
 
 
