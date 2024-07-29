@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import StyleCss from './profile.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { addPostProfileAction } from '../../redux/store/addPostProfileAction'
+import { fetchPosts } from '../../redux/asyncAction/profilePosts'
 
 
 
@@ -10,6 +11,9 @@ const Profile = () => {
     const newPostElement = React.createRef()
     const dispatch = useDispatch();
     const statePosts = useSelector(state => state.rootReducer.posts.posts)
+    useEffect(() => {
+        dispatch(fetchPosts())
+    }, [dispatch])
 
     const addPostProfile = () => {
         const newPost = {
@@ -26,8 +30,16 @@ const Profile = () => {
             <div>
                 {props.posts.map((post) =>
                         <div key={post.id}>
-                            <img className={StyleCss.postImage} src={post.image} alt="" />
-                            {post.text}
+                            <div>
+                                <img className={StyleCss.postImage} src={post.image} alt="" />
+                                {post.text}
+                            </div>
+                            <div>
+                                <img className={StyleCss.postImage} src='https://steamuserimages-a.akamaihd.net/ugc/832451549106448214/0C15FCBE28082B0A2043D1DEDE0E3C8228F1C1EE/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false' alt="" />
+                                {post.id}
+                                {post.title}
+                                {post.body}
+                            </div>
                         </div>
                     )}
             </div>
@@ -60,13 +72,11 @@ const Profile = () => {
                     onChange={onPostChange}></textarea>
                 <div className={StyleCss.containButton}>
                     <button className={StyleCss.custom_button}
-                        //onClick={addNewPost}> Добавить пост </button>
                         onClick={addPostProfile}> Добавить пост </button>
+                    <button onClick={() => dispatch(fetchPosts())}> Много постов </button>
                 </div>
                 <div>
-                    <button>
-                        Тест
-                    </button>
+                    
                 </div>
             </div>
             <div>
