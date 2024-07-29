@@ -2,24 +2,15 @@ import './App.css'
 import Navbar from './components/navbar/navbar'
 import { Routes, Route } from 'react-router-dom'
 import Profile from './components/profile/profile'
-//import Posts from './components/posts/posts'
 import Subscribes from './components/subscribes/subscribes'
 import Subscriptions from './components/subscriptions/subscriptions'
 import { useDispatch, useSelector } from 'react-redux'
 import { addCustomerAction, removeCustomerAction } from './redux/store/customerReducer'
+import { fetchCustomers } from './redux/asyncAction/customers'
 
 function App() {
   const dispatch = useDispatch()
-  const cash = useSelector(state => state.rootReducer.cash.cash)
   const customers = useSelector(state => state.rootReducer.customers.customers)
-
-  const addCash = () => {
-    dispatch({ type: 'ADD_CASH', payload: 20 })
-  }
-
-  const getCash = () => {
-    dispatch({ type: 'GET_CASH', payload: 20 })
-  }
 
   const addCustomer = () => {
     const customer = {
@@ -36,14 +27,9 @@ function App() {
   return (
     <div className='app-wrapper'>
       <div>
-        TEST
-        <button onClick={() => addCash()}> Addcash </button>
-        <button onClick={() => getCash()}> Getcash </button>
-        <div>{cash}</div>
-      </div>
-      <div>
         TEST 2
         <button onClick={() => addCustomer()}> Добавить клиента </button>
+        <button onClick={() => dispatch(fetchCustomers())}> Добавить клиентов из базы </button>
         <button onClick={() => removeCustomer()}> Удалить клиента </button>
         <div>
           {customers.length > 0 ?
