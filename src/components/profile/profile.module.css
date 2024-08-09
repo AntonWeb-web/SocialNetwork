@@ -25,21 +25,57 @@ h1 {
     color: #555;
 }
 
-.containButton {
-    display: flex;
-    justify-content: end;
-}
-
 .custom_button {
     margin: 20px;
 }
 
-/* Стили постов */
-
-.postImage {
-    width: 10%;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 10px;
+.customButton {
+    background-color: burlywood;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2em;
+    margin: 4px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
 }
 
+.customButton:hover {
+    background-color: burlywood;
+    transform: scale(1.01);
+}
+
+.customButton:active {
+    transform: scale(0.95);
+}
+
+.createPost {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.textarea {
+    margin: 20px;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: #eaeaea;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    resize: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.textarea:focus {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    outline: none;
+}

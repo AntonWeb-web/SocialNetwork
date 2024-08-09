@@ -1,11 +1,30 @@
 import { useState } from 'react'
 import StyleCss from './profilePosts.module.css'
 
-const ProfilePosts = () => {
-    const ava = 'https://steamuserimages-a.akamaihd.net/ugc/832451549106448214/0C15FCBE28082B0A2043D1DEDE0E3C8228F1C1EE/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'
+const ProfilePosts = (props) => {
+    const [count, setCount] = useState(1)
 
     return (
-        <div></div>
+        <div>
+            {props.posts.map((post) =>
+                <div className={StyleCss.post} key={post.id}>
+                    <div className={StyleCss.postHeader}>
+                        <img className={StyleCss.avatar} src={post.ava} alt='' />
+                        <div className={StyleCss.postInfo}>
+                            <div className={StyleCss.username}> {post.username} </div>
+                            <div className={StyleCss.date}> {post.date}</div>
+                        </div>
+                    </div>
+                    <div className={StyleCss.postContent}>
+                        <p> {post.text} </p>
+                    </div>
+                    <div className={StyleCss.postActions}>
+                        <button className={StyleCss.buttonLike} onClick={() => setCount(count + 1)}> ❤️ {count} </button>
+                        <input type="text" placeholder='Поделитесь своим мнением в комментариях...' className={StyleCss.commentInput} />
+                    </div>
+                </div>
+            )}
+        </div>
     )
 }
 

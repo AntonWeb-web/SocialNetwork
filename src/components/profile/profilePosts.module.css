@@ -1,6 +1,74 @@
-.postImage {
-    width: 10%;
+.post {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.postHeader {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    object-fit: cover;
-    margin: 10px;
+}
+
+.postInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.date {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.postContent {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.postActions {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.buttonLike {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.buttonLike:hover {
+    transform: scale(1.2);
+}
+
+.commentInput {
+    padding: 8px;
+    margin: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.commentInput:focus {
+    outline: none;
+    border-color: #008cba;
 }
